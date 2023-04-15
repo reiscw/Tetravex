@@ -145,14 +145,30 @@ public class TetravexPanel extends JPanel {
 	}
 	
 	public void clickSource(int i, int j) {
-		// check if a button has been clicked in source (if so, invalid, clear all buttons)
+		// check if a button has been clicked in source (if so, invalid, perform swap in destination)
 		boolean source = false;
 		int r = 0;
 		int c = 0;
 		for (r = 0; r < size; r++) {
 			for (c = 0; c < size; c++) {
-				if (!sourceButtons[r][c].isEnabled()) {
+				if (!sourceButtons[r][c].isEnabled() && !(r == i && c == j)) {
+					Tile one = sourceButtons[i][j].getTile();
+					Tile two = sourceButtons[r][c].getTile();
+					ImageIcon oneIcon = null;
+					ImageIcon twoIcon = null;
+					if (one != null) {
+						oneIcon = new ImageIcon(one.drawTile());
+					}
+					if (two != null) {
+						twoIcon = new ImageIcon(two.drawTile());
+					}
+					sourceButtons[r][c].setTile(one);
+					sourceButtons[r][c].setIcon(oneIcon);
+					sourceButtons[i][j].setTile(two);
+					sourceButtons[i][j].setIcon(twoIcon);
 					sourceButtons[r][c].setEnabled(true);
+					sourceButtons[i][j].setEnabled(true);
+					check();
 					return;
 				}
 			}
@@ -412,7 +428,7 @@ public class TetravexPanel extends JPanel {
 	}
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Tetravex 2.0 by Christopher Reis");
+		JFrame frame = new JFrame("Tetravex 2.1 by Christopher Reis");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTextField sizeEntry = new JTextField();
 		Object[] message = {"Enter your desired puzzle size (3-5): ", sizeEntry};
