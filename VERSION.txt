@@ -1,3 +1,4 @@
 Version 1.0: Initial version, somewhat primitive (this was the first GUI application I wrote in Java)
 Version 2.0: Complete rewrite of the GUI portions of the code, enhanced features (shifting now enabled)
 Version 2.1: Allow swapping in source panel
+Version 2.2: Fixed JOptionPane issue

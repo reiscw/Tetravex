@@ -394,9 +394,9 @@ public class TetravexPanel extends JPanel {
 		boolean success = checkSolution();
 		if (success) {
 			//partyDown();
-			String successMessage = "Would you like to play again? (Choose OK for yes, Cancel for no)";
-			int result = JOptionPane.showConfirmDialog(null,  successMessage, "Congratulations!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-			if (result == JOptionPane.OK_OPTION) {
+			String successMessage = "Would you like to play again?";
+			int result = JOptionPane.showConfirmDialog(null,  successMessage, "Congratulations!", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+			if (result == JOptionPane.YES_OPTION) {
 				newGame();
 			} else {
 				System.exit(0);
@@ -428,13 +428,13 @@ public class TetravexPanel extends JPanel {
 	}
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Tetravex 2.1 by Christopher Reis");
+		JFrame frame = new JFrame("Tetravex 2.2 by Christopher Reis");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTextField sizeEntry = new JTextField();
 		Object[] message = {"Enter your desired puzzle size (3-5): ", sizeEntry};
 		int result = JOptionPane.showConfirmDialog(null,  message, "Choose your Tetravex size", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		int size = 0;
-		if (result != JOptionPane.OK_CANCEL_OPTION) {
+		if (result == JOptionPane.OK_OPTION) {
 			try {
 				size = Integer.parseInt(sizeEntry.getText());
 			} catch (Exception e) {
